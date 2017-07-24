@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">AutomationTestSupervisorExample</string>
+
+    <string name="welcome_header">Welcome to Azimo Note!</string>
+    <string name="welcome_message">Example project created in order to show possibilities of AutomationTestSupervisor testing tool.</string>
+    <string name="welcome_btn_login">Login</string>
+    <string name="welcome_btn_register">Register</string>
 </resources>
