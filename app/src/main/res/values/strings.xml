@@ -1,8 +1,24 @@
 <resources>
     <string name="app_name">AutomationTestSupervisorExample</string>
 
+    <string name="message_dialog_confirm">Confirm</string>
+    <string name="progress_dialog_message">Please wait…</string>
+
     <string name="welcome_header">Welcome to Azimo Note!</string>
     <string name="welcome_message">Example project created in order to show possibilities of AutomationTestSupervisor testing tool.</string>
     <string name="welcome_btn_login">Login</string>
     <string name="welcome_btn_register">Register</string>
+
+    <string name="login_btn_login">Login</string>
+    <string name="login_btn_register">No account yet? Create one</string>
+    <string name="login_hint_password">Password</string>
+    <string name="login_hint_email">Email</string>
+    <string name="login_error_incorrect_email">Invalid e-mail</string>
+    <string name="login_error_empty_email">E-mail field cannot be empty</string>
+    <string name="login_error_empty_password">Password field cannot be empty</string>
+
+    <string name="register_btn_register">Register</string>
+    <string name="register_btn_login">Already have an account? Login</string>
+    <string name="register_hint_password">Password</string>
+    <string name="register_hint_email">Email</string>
 </resources>

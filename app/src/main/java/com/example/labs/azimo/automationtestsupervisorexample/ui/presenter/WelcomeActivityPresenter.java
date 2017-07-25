@@ -10,6 +10,7 @@ import com.example.labs.azimo.automationtestsupervisorexample.utils.Navigator;
 public class WelcomeActivityPresenter {
 
     private WelcomeActivity view;
+
     private Navigator navigator;
 
     public WelcomeActivityPresenter(WelcomeActivity view, Navigator navigator) {

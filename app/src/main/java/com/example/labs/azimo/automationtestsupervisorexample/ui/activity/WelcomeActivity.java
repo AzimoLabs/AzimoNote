@@ -19,7 +19,7 @@ public class WelcomeActivity extends AppCompatActivity {
     private Button btnLogin;
     private Button btnRegister;
 
-    private WelcomeActivityPresenter welcomeActivityPresenter;
+    private WelcomeActivityPresenter presenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
     private void setupPresenter() {
         Navigator navigator = new Navigator();
-        welcomeActivityPresenter = new WelcomeActivityPresenter(this, navigator);
+        presenter = new WelcomeActivityPresenter(this, navigator);
     }
 
     private void setupViews() {
@@ -45,14 +45,14 @@ public class WelcomeActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                welcomeActivityPresenter.onLoginClick();
+                presenter.onLoginClick();
             }
         });
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                welcomeActivityPresenter.onRegisterClick();
+                presenter.onRegisterClick();
             }
         });
     }
