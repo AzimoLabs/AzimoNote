@@ -4,6 +4,8 @@ import com.example.labs.azimo.automationtestsupervisorexample.api.manager.UserMa
 import com.example.labs.azimo.automationtestsupervisorexample.ui.activity.DispatcherActivity;
 import com.example.labs.azimo.automationtestsupervisorexample.utils.Navigator;
 
+import javax.inject.Inject;
+
 /**
  * Created by F1sherKK on 25/07/2017.
  */
@@ -15,6 +17,7 @@ public class DispatcherActivityPresenter {
     private UserManager userManager;
     private Navigator navigator;
 
+    @Inject
     public DispatcherActivityPresenter(DispatcherActivity view, UserManager userManager,
                                        Navigator navigator) {
         this.view = view;

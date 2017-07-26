@@ -1,17 +1,27 @@
 package com.example.labs.azimo.automationtestsupervisorexample.ui.activity.base;
 
 import android.app.DialogFragment;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.labs.azimo.automationtestsupervisorexample.R;
 import com.example.labs.azimo.automationtestsupervisorexample.ui.dialog.CustomProgressDialog;
 import com.example.labs.azimo.automationtestsupervisorexample.ui.dialog.MessageDialog;
 
+import dagger.android.AndroidInjection;
+
 /**
  * Created by F1sherKK on 24/07/2017.
  */
 
 public abstract class BaseActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        AndroidInjection.inject(this);
+    }
 
     public void showMessageDialog(String message) {
         MessageDialog dialog = MessageDialog.newInstance(message);

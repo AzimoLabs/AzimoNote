@@ -1,7 +1,5 @@
 package com.example.labs.azimo.automationtestsupervisorexample.api;
 
-import android.content.Context;
-
 import com.example.labs.azimo.automationtestsupervisorexample.api.mock.ClockMockHttpException;
 import com.example.labs.azimo.automationtestsupervisorexample.api.mock.CloudMock;
 import com.example.labs.azimo.automationtestsupervisorexample.api.mock.CloudMockResponse;
@@ -22,9 +20,9 @@ public class ApiService {
     private CloudMock cloudMock;
     private Gson gson;
 
-    public ApiService(Context context, Gson gson) {
-        this.cloudMock = new CloudMock(context, gson);
-        this.gson = new Gson();
+    public ApiService(CloudMock cloudMock, Gson gson) {
+        this.cloudMock = cloudMock;
+        this.gson = gson;
     }
 
     public Observable<LoginUserResponse> loginUser(final String email, final String password) {

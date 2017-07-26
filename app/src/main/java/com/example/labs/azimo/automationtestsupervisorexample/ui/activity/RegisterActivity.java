@@ -1,6 +1,5 @@
 package com.example.labs.azimo.automationtestsupervisorexample.ui.activity;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
@@ -13,16 +12,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.labs.azimo.automationtestsupervisorexample.R;
-import com.example.labs.azimo.automationtestsupervisorexample.api.ApiService;
-import com.example.labs.azimo.automationtestsupervisorexample.api.errors.ApiErrorManager;
-import com.example.labs.azimo.automationtestsupervisorexample.api.manager.UserManager;
-import com.example.labs.azimo.automationtestsupervisorexample.data.PrefsStorageManager;
-import com.example.labs.azimo.automationtestsupervisorexample.data.UserDataStore;
 import com.example.labs.azimo.automationtestsupervisorexample.ui.activity.base.BaseActivity;
 import com.example.labs.azimo.automationtestsupervisorexample.ui.presenter.RegisterActivityPresenter;
-import com.example.labs.azimo.automationtestsupervisorexample.utils.Navigator;
-import com.example.labs.azimo.automationtestsupervisorexample.utils.validator.EmailValidator;
-import com.google.gson.Gson;
+
+import javax.inject.Inject;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by F1sherKK on 24/07/2017.
@@ -33,32 +29,24 @@ public class RegisterActivity extends BaseActivity {
     public static final String REGISTER_KEY_EMAIL = "KeyEmail";
     public static final String REGISTER_KEY_PASSWORD = "KeyPassword";
 
-    private Toolbar toolbar;
-    private Button btnRegister;
-    private TextView btnLogin;
-    private TextInputEditText etPassword;
-    private TextInputEditText etEmail;
-    private TextInputLayout tilPassword;
-    private TextInputLayout tilEmail;
+    @Inject RegisterActivityPresenter presenter;
 
-    private RegisterActivityPresenter presenter;
+    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.btnRegister) Button btnRegister;
+    @BindView(R.id.btnLogin) TextView btnLogin;
+    @BindView(R.id.etPassword) TextInputEditText etPassword;
+    @BindView(R.id.etEmail) TextInputEditText etEmail;
+    @BindView(R.id.tilPassword) TextInputLayout tilPassword;
+    @BindView(R.id.tilEmail) TextInputLayout tilEmail;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        btnRegister = (Button) findViewById(R.id.btnRegister);
-        btnLogin = (TextView) findViewById(R.id.btnLogin);
-        etPassword = (TextInputEditText) findViewById(R.id.etPassword);
-        etEmail = (TextInputEditText) findViewById(R.id.etEmail);
-        tilPassword = (TextInputLayout) findViewById(R.id.tilPassword);
-        tilEmail = (TextInputLayout) findViewById(R.id.tilEmail);
+        ButterKnife.bind(this);
 
         setupToolbar();
         setupViews();
-        setupPresenter();
 
         presenter.init(getIntent());
     }
@@ -72,22 +60,14 @@ public class RegisterActivity extends BaseActivity {
         }
     }
 
-    private void setupPresenter() {
-        Navigator navigator = new Navigator();
-        EmailValidator emailValidator = new EmailValidator();
-        PrefsStorageManager prefsStorageManager = new PrefsStorageManager(this);
-        SharedPreferences userDataStorePrefs =
-                prefsStorageManager.getSharedPreferencesForKey(UserDataStore.REPOSITORY_KEY);
-        Gson gson = new Gson();
-        ApiService apiService = new ApiService(this, gson);
-        UserDataStore userDataStore = new UserDataStore(userDataStorePrefs);
-        ApiErrorManager apiErrorManager = new ApiErrorManager(this);
-        UserManager userManager = new UserManager(apiService, userDataStore);
-        presenter = new RegisterActivityPresenter(
-                this, navigator, emailValidator, userManager, apiErrorManager);
-    }
-
     private void setupViews() {
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

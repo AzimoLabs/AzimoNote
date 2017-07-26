@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.labs.azimo.automationtestsupervisorexample.R;
-import com.example.labs.azimo.automationtestsupervisorexample.api.errors.ApiErrorManager;
+import com.example.labs.azimo.automationtestsupervisorexample.api.manager.ApiErrorManager;
 import com.example.labs.azimo.automationtestsupervisorexample.api.manager.UserManager;
 import com.example.labs.azimo.automationtestsupervisorexample.api.utils.ErrorTrackingApiObserver;
 import com.example.labs.azimo.automationtestsupervisorexample.data.model.User;
@@ -12,6 +12,8 @@ import com.example.labs.azimo.automationtestsupervisorexample.ui.activity.LoginA
 import com.example.labs.azimo.automationtestsupervisorexample.ui.activity.RegisterActivity;
 import com.example.labs.azimo.automationtestsupervisorexample.utils.Navigator;
 import com.example.labs.azimo.automationtestsupervisorexample.utils.validator.EmailValidator;
+
+import javax.inject.Inject;
 
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -32,6 +34,7 @@ public class LoginActivityPresenter {
 
     private Subscription loginUserSubscription;
 
+    @Inject
     public LoginActivityPresenter(LoginActivity view, Navigator navigator,
                                   EmailValidator emailValidator, UserManager userManager,
                                   ApiErrorManager apiErrorManager) {

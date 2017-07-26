@@ -2,7 +2,7 @@ package com.example.labs.azimo.automationtestsupervisorexample.api.utils;
 
 import android.support.annotation.Nullable;
 
-import com.example.labs.azimo.automationtestsupervisorexample.api.errors.ApiErrorManager;
+import com.example.labs.azimo.automationtestsupervisorexample.api.manager.ApiErrorManager;
 
 import rx.Observer;
 

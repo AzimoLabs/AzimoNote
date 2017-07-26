@@ -21,14 +21,14 @@ import rx.Observable;
 
 public class CloudMock {
 
-    private static final String REPOSITORY_KEY = "CloudMockKey";
+    public static final String REPOSITORY_KEY = "CloudMockKey";
     private static final String CLOUD_USERS_KEY = "CloudUsersKey";
 
     private SharedPreferences cloudPreferences;
     private Gson gson;
 
-    public CloudMock(Context context, Gson gson) {
-        this.cloudPreferences = context.getSharedPreferences(REPOSITORY_KEY, Context.MODE_PRIVATE);
+    public CloudMock(SharedPreferences sharedPreferences, Gson gson) {
+        this.cloudPreferences = sharedPreferences;
         this.gson = gson;
     }
 

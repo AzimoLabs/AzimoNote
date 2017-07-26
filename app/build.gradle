@@ -36,5 +36,13 @@ dependencies {
     compile "io.reactivex:rxjava:1.2.3"
     compile "io.reactivex:rxandroid:1.2.1"
 
-    testCompile 'junit:junit:4.12'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.10'
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.10'
+    compile 'com.google.dagger:dagger:2.10'
+    compile 'com.google.dagger:dagger-android-support:2.10'
+
+    compile "com.jakewharton:butterknife:8.5.1"
+    annotationProcessor "com.jakewharton:butterknife-compiler:8.5.1"
+
+    testCompile "junit:junit:4.12"
 }

@@ -1,4 +1,4 @@
-package com.example.labs.azimo.automationtestsupervisorexample.api.errors;
+package com.example.labs.azimo.automationtestsupervisorexample.api.manager;
 
 
 import com.example.labs.azimo.automationtestsupervisorexample.api.mock.ClockMockHttpException;
