@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -32,6 +33,7 @@ public class LoginActivity extends BaseActivity {
     public static final String LOGIN_KEY_EMAIL = "KeyEmail";
     public static final String LOGIN_KEY_PASSWORD = "KeyPassword";
 
+    private Toolbar toolbar;
     private Button btnLogin;
     private TextView btnRegister;
     private TextInputEditText etPassword;
@@ -46,6 +48,7 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         btnLogin = (Button) findViewById(R.id.btnLogin);
         btnRegister = (TextView) findViewById(R.id.btnRegister);
         etPassword = (TextInputEditText) findViewById(R.id.etPassword);
@@ -53,10 +56,20 @@ public class LoginActivity extends BaseActivity {
         tilPassword = (TextInputLayout) findViewById(R.id.tilPassword);
         tilEmail = (TextInputLayout) findViewById(R.id.tilEmail);
 
+        setupToolbar();
         setupViews();
         setupPresenter();
 
         presenter.init(getIntent());
+    }
+
+    private void setupToolbar() {
+        if (toolbar != null) {
+            toolbar.setTitleTextColor(getResources().getColor(R.color.textColorPrimary));
+            toolbar.setTitle(R.string.login_screen_title);
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     private void setupPresenter() {
@@ -75,6 +88,13 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void setupViews() {
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

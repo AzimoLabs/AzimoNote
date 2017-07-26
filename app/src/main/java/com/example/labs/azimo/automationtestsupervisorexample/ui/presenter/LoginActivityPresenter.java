@@ -99,7 +99,7 @@ public class LoginActivityPresenter {
         }
 
         if (password.isEmpty()) {
-            view.setPasswordError(view.getString(R.string.login_error_incorrect_email));
+            view.setPasswordError(view.getString(R.string.login_error_empty_password));
             wasError = true;
         }
 

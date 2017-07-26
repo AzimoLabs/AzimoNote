@@ -13,14 +13,14 @@
 
         <activity
             android:name=".ui.activity.DispatcherActivity"
-            android:launchMode="singleTask"
-            android:theme="@style/AppTheme">
+            android:launchMode="singleTask">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".ui.activity.WelcomeActivity" />
         <activity android:name=".ui.activity.AddNoteActivity" />
         <activity android:name=".ui.activity.LoginActivity" />
