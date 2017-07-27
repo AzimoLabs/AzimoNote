@@ -2,12 +2,16 @@ package com.example.labs.azimo.automationtestsupervisorexample;
 
 import android.app.Activity;
 
+import com.example.labs.azimo.automationtestsupervisorexample.ui.activity.AddNoteActivity;
 import com.example.labs.azimo.automationtestsupervisorexample.ui.activity.DispatcherActivity;
 import com.example.labs.azimo.automationtestsupervisorexample.ui.activity.LoginActivity;
+import com.example.labs.azimo.automationtestsupervisorexample.ui.activity.NotesActivity;
 import com.example.labs.azimo.automationtestsupervisorexample.ui.activity.RegisterActivity;
 import com.example.labs.azimo.automationtestsupervisorexample.ui.activity.WelcomeActivity;
+import com.example.labs.azimo.automationtestsupervisorexample.ui.component.AddNoteActivitySubComponent;
 import com.example.labs.azimo.automationtestsupervisorexample.ui.component.DispatcherActivitySubComponent;
 import com.example.labs.azimo.automationtestsupervisorexample.ui.component.LoginActivitySubComponent;
+import com.example.labs.azimo.automationtestsupervisorexample.ui.component.NotesActivitySubComponent;
 import com.example.labs.azimo.automationtestsupervisorexample.ui.component.RegisterActivitySubComponent;
 import com.example.labs.azimo.automationtestsupervisorexample.ui.component.WelcomeActivitySubComponent;
 
@@ -42,4 +46,14 @@ public abstract class BuildersModule {
     @IntoMap
     @ActivityKey(RegisterActivity.class)
     abstract AndroidInjector.Factory<? extends Activity> bindRegisterActivityInjectorFactory(RegisterActivitySubComponent.Builder builder);
+
+    @Binds
+    @IntoMap
+    @ActivityKey(NotesActivity.class)
+    abstract AndroidInjector.Factory<? extends Activity> bindNotesActivityInjectorFactory(NotesActivitySubComponent.Builder builder);
+
+    @Binds
+    @IntoMap
+    @ActivityKey(AddNoteActivity.class)
+    abstract AndroidInjector.Factory<? extends Activity> bindAddNoteActivityInjectorFactory(AddNoteActivitySubComponent.Builder builder);
 }

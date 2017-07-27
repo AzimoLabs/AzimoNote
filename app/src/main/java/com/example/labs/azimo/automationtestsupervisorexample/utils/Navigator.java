@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.labs.azimo.automationtestsupervisorexample.ui.activity.AddNoteActivity;
 import com.example.labs.azimo.automationtestsupervisorexample.ui.activity.LoginActivity;
 import com.example.labs.azimo.automationtestsupervisorexample.ui.activity.NotesActivity;
 import com.example.labs.azimo.automationtestsupervisorexample.ui.activity.RegisterActivity;
@@ -50,6 +51,11 @@ public class Navigator {
     public void navigateToNotesScreenFrom(Context context) {
         Intent intent = new Intent(context, NotesActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        context.startActivity(intent);
+    }
+
+    public void navigateToAddNoteScreenFrom(Context context) {
+        Intent intent = new Intent(context, AddNoteActivity.class);
         context.startActivity(intent);
     }
 }

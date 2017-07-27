@@ -52,12 +52,10 @@ public class RegisterActivity extends BaseActivity {
     }
 
     private void setupToolbar() {
-        if (toolbar != null) {
-            toolbar.setTitleTextColor(getResources().getColor(R.color.textColorPrimary));
-            toolbar.setTitle(R.string.register_screen_title);
-            setSupportActionBar(toolbar);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
+        toolbar.setTitleTextColor(getResources().getColor(R.color.textColorPrimary));
+        toolbar.setTitle(R.string.register_screen_title);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void setupViews() {

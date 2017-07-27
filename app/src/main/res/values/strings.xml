@@ -26,4 +26,10 @@
     <string name="register_hint_email">Email</string>
 
     <string name="notes_screen_title">Notes</string>
+    <string name="notes_adapter_item_placeholder">---</string>
+
+    <string name="add_note_screen_title">Add note</string>
+    <string name="add_note_button">Save</string>
+    <string name="add_note_hint">Type message...</string>
+
 </resources>

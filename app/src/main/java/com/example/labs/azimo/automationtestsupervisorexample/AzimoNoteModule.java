@@ -2,8 +2,10 @@ package com.example.labs.azimo.automationtestsupervisorexample;
 
 import android.content.Context;
 
+import com.example.labs.azimo.automationtestsupervisorexample.ui.component.AddNoteActivitySubComponent;
 import com.example.labs.azimo.automationtestsupervisorexample.ui.component.DispatcherActivitySubComponent;
 import com.example.labs.azimo.automationtestsupervisorexample.ui.component.LoginActivitySubComponent;
+import com.example.labs.azimo.automationtestsupervisorexample.ui.component.NotesActivitySubComponent;
 import com.example.labs.azimo.automationtestsupervisorexample.ui.component.RegisterActivitySubComponent;
 import com.example.labs.azimo.automationtestsupervisorexample.ui.component.WelcomeActivitySubComponent;
 
@@ -18,7 +20,10 @@ import dagger.Provides;
         WelcomeActivitySubComponent.class,
         DispatcherActivitySubComponent.class,
         LoginActivitySubComponent.class,
-        RegisterActivitySubComponent.class})
+        RegisterActivitySubComponent.class,
+        NotesActivitySubComponent.class,
+        AddNoteActivitySubComponent.class
+})
 
 public class AzimoNoteModule {
     @Provides

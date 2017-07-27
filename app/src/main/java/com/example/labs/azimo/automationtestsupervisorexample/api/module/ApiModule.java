@@ -3,6 +3,7 @@ package com.example.labs.azimo.automationtestsupervisorexample.api.module;
 import android.content.SharedPreferences;
 
 import com.example.labs.azimo.automationtestsupervisorexample.api.ApiService;
+import com.example.labs.azimo.automationtestsupervisorexample.api.manager.NotesManager;
 import com.example.labs.azimo.automationtestsupervisorexample.api.manager.UserManager;
 import com.example.labs.azimo.automationtestsupervisorexample.api.mock.CloudMock;
 import com.example.labs.azimo.automationtestsupervisorexample.data.PrefsStorageManager;
@@ -24,6 +25,12 @@ public class ApiModule {
     @Singleton
     public UserManager provideUserManager(ApiService apiService, UserDataStore userDataStore) {
         return new UserManager(apiService, userDataStore);
+    }
+
+    @Provides
+    @Singleton
+    public NotesManager provideNotesManager(ApiService apiService) {
+        return new NotesManager(apiService);
     }
 
     @Provides

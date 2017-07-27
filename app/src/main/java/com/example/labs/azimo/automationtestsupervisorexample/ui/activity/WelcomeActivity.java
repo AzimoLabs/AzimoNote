@@ -13,6 +13,7 @@ import com.example.labs.azimo.automationtestsupervisorexample.ui.presenter.Welco
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by F1sherKK on 24/07/2017.
@@ -30,17 +31,16 @@ public class WelcomeActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+        ButterKnife.bind(this);
 
         setupToolbar();
         setupViews();
     }
 
     private void setupToolbar() {
-        if (toolbar != null) {
-            toolbar.setTitleTextColor(getResources().getColor(R.color.textColorPrimary));
-            toolbar.setTitle(R.string.welcome_screen_title);
-            setSupportActionBar(toolbar);
-        }
+        toolbar.setTitleTextColor(getResources().getColor(R.color.textColorPrimary));
+        toolbar.setTitle(R.string.welcome_screen_title);
+        setSupportActionBar(toolbar);
     }
 
     private void setupViews() {

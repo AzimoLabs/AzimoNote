@@ -19,6 +19,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by F1sherKK on 24/07/2017.
@@ -52,12 +53,10 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void setupToolbar() {
-        if (toolbar != null) {
-            toolbar.setTitleTextColor(getResources().getColor(R.color.textColorPrimary));
-            toolbar.setTitle(R.string.login_screen_title);
-            setSupportActionBar(toolbar);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
+        toolbar.setTitleTextColor(getResources().getColor(R.color.textColorPrimary));
+        toolbar.setTitle(R.string.login_screen_title);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void setupViews() {
