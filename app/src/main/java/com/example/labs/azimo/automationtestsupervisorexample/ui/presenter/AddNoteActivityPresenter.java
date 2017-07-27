@@ -61,11 +61,10 @@ public class AddNoteActivityPresenter {
         }
     }
 
-    public Note createNote(String message) {
+    private Note createNote(String message) {
         Note note = new Note();
-        note.setCreationDate((int) System.currentTimeMillis());
+        note.setCreationDate(System.currentTimeMillis());
         note.setMessage(message);
-        note.setStatus(-1);
         return note;
     }
 
