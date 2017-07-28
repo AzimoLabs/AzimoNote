@@ -5,6 +5,7 @@ import com.example.labs.azimo.automationtestsupervisorexample.api.manager.NotesM
 import com.example.labs.azimo.automationtestsupervisorexample.api.manager.UserManager;
 import com.example.labs.azimo.automationtestsupervisorexample.api.utils.ErrorTrackingApiObserver;
 import com.example.labs.azimo.automationtestsupervisorexample.data.model.Note;
+import com.example.labs.azimo.automationtestsupervisorexample.data.model.User;
 import com.example.labs.azimo.automationtestsupervisorexample.ui.activity.NotesActivity;
 import com.example.labs.azimo.automationtestsupervisorexample.utils.Navigator;
 
@@ -60,7 +61,8 @@ public class NotesActivityPresenter {
             view.showLoader();
         }
         if (fetchNotesSubscription == null || fetchNotesSubscription.isUnsubscribed()) {
-            fetchNotesSubscription = notesManager.fetchNotes()
+            User user = userManager.getCurrentUser();
+            fetchNotesSubscription = notesManager.fetchNotes(user)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new ErrorTrackingApiObserver<List<Note>>(apiErrorManager) {

@@ -10,7 +10,6 @@ import com.example.labs.azimo.automationtestsupervisorexample.ui.adapter.model.N
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 import butterknife.BindView;
@@ -42,7 +41,7 @@ public class NoteViewHolder extends BaseViewHolder<NoteAdapterViewModel> {
     }
 
     private String convertTime(long timeInMillis) {
-        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+        DateFormat formatter = new SimpleDateFormat("dd/mm/yyyy hh:mm:ss", Locale.US);
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(timeInMillis);
         return  formatter.format(calendar.getTime());

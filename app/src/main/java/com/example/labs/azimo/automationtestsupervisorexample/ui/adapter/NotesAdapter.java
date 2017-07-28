@@ -12,6 +12,8 @@ import com.example.labs.azimo.automationtestsupervisorexample.ui.adapter.viewhol
 import com.example.labs.azimo.automationtestsupervisorexample.ui.adapter.viewholder.NoteViewHolder;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -21,7 +23,6 @@ import java.util.List;
 public class NotesAdapter extends RecyclerView.Adapter<BaseViewHolder<NoteAdapterViewModel>> {
 
     public static final int ITEM_NOTE_PREVIEW = 0;
-    public static final int ITEM_NOTE_EDIT = 1;
 
     private final List<NoteAdapterViewModel> currentItems = new ArrayList<>();
 
@@ -38,11 +39,6 @@ public class NotesAdapter extends RecyclerView.Adapter<BaseViewHolder<NoteAdapte
                     inflater.inflate(R.layout.list_item_note_preview, parent, false)
             );
         }
-//        } else if (viewType == ITEM_NOTE) {
-//            return new NoteAdapterViewModel(
-//                    inflater.inflate(R.layout.list_item_loader, parent, false)
-//            );
-//        }
         return null;
     }
 
@@ -67,13 +63,26 @@ public class NotesAdapter extends RecyclerView.Adapter<BaseViewHolder<NoteAdapte
     }
 
     public void addItems(@NonNull List<Note> notes) {
+        Collections.sort(notes, new Comparator<Note>() {
+            @Override
+            public int compare(Note note_left, Note note_right) {
+                if (note_left.getCreationDate() > note_right.getCreationDate()) {
+                    return -1;
+                } else if (note_left.getCreationDate() < note_right.getCreationDate()) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            }
+        });
+
         List<NoteAdapterViewModel> newItems = new ArrayList<>();
         for (Note note : notes) {
             boolean isUniqueIdCurrentlyInAdapter = false;
-            for (NoteAdapterViewModel viewModel  : currentItems) {
-              if (viewModel.getNote().getUniqueId().equals(note.getUniqueId())) {
-                  isUniqueIdCurrentlyInAdapter = true;
-              }
+            for (NoteAdapterViewModel viewModel : currentItems) {
+                if (viewModel.getNote().getUniqueId().equals(note.getUniqueId())) {
+                    isUniqueIdCurrentlyInAdapter = true;
+                }
             }
 
             if (!isUniqueIdCurrentlyInAdapter) {

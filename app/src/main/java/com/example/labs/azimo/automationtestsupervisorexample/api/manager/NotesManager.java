@@ -6,6 +6,7 @@ import com.example.labs.azimo.automationtestsupervisorexample.api.response.Fetch
 import com.example.labs.azimo.automationtestsupervisorexample.api.response.RemoveNoteResponse;
 import com.example.labs.azimo.automationtestsupervisorexample.api.response.UpdateNoteResponse;
 import com.example.labs.azimo.automationtestsupervisorexample.data.model.Note;
+import com.example.labs.azimo.automationtestsupervisorexample.data.model.User;
 
 import java.util.List;
 
@@ -25,8 +26,8 @@ public class NotesManager {
         this.apiService = apiService;
     }
 
-    public Observable<List<Note>> fetchNotes() {
-        return apiService.fetchNotes().flatMap(new Func1<FetchNotesResponse, Observable<List<Note>>>() {
+    public Observable<List<Note>> fetchNotes(User user) {
+        return apiService.fetchNotes(user.getUniqueId()).flatMap(new Func1<FetchNotesResponse, Observable<List<Note>>>() {
             @Override
             public Observable<List<Note>> call(FetchNotesResponse fetchNotesResponse) {
                 return Observable.just(fetchNotesResponse.getNoteList());
@@ -34,8 +35,8 @@ public class NotesManager {
         });
     }
 
-    public Observable<Note> addNote(Note note) {
-        return apiService.addNote(note.getMessage(), note.getCreationDate(), note.getStatus())
+    public Observable<Note> addNote(User user, Note note) {
+        return apiService.addNote(user.getUniqueId(), note.getMessage(), note.getCreationDate())
                 .flatMap(new Func1<AddNoteResponse, Observable<Note>>() {
                     @Override
                     public Observable<Note> call(AddNoteResponse addNoteResponse) {
@@ -44,8 +45,8 @@ public class NotesManager {
                 });
     }
 
-    public Observable<Boolean> removeNote(Note note) {
-        return apiService.removeNote(note.getUniqueId())
+    public Observable<Boolean> removeNote(User user, Note note) {
+        return apiService.removeNote(user.getUniqueId(), note.getUniqueId())
                 .flatMap(new Func1<RemoveNoteResponse, Observable<Boolean>>() {
                     @Override
                     public Observable<Boolean> call(RemoveNoteResponse removeNoteResponse) {
@@ -54,8 +55,8 @@ public class NotesManager {
                 });
     }
 
-    public Observable<Note> updateNote(Note note) {
-        return apiService.updateNote(note.getUniqueId(), note.getMessage(), note.getCreationDate(), note.getStatus())
+    public Observable<Note> updateNote(User user, Note note) {
+        return apiService.updateNote(user.getUniqueId(), note.getUniqueId(), note.getMessage(), note.getCreationDate())
                 .flatMap(new Func1<UpdateNoteResponse, Observable<Note>>() {
                     @Override
                     public Observable<Note> call(UpdateNoteResponse updateNoteResponse) {

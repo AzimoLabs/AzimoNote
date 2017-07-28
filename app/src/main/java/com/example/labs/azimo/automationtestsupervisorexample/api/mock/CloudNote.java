@@ -6,10 +6,18 @@ package com.example.labs.azimo.automationtestsupervisorexample.api.mock;
 
 public class CloudNote {
 
+    private String ownerUniqueId;
     private String uniqueId;
     private String message;
     private long creationDate;
-    private int status;
+
+    public String getOwnerUniqueId() {
+        return ownerUniqueId;
+    }
+
+    public void setOwnerUniqueId(String ownerUniqueId) {
+        this.ownerUniqueId = ownerUniqueId;
+    }
 
     public String getUniqueId() {
         return uniqueId;
@@ -17,14 +25,6 @@ public class CloudNote {
 
     public void setUniqueId(String uniqueId) {
         this.uniqueId = uniqueId;
-    }
-
-    public long getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(long creationDate) {
-        this.creationDate = creationDate;
     }
 
     public String getMessage() {
@@ -35,21 +35,21 @@ public class CloudNote {
         this.message = message;
     }
 
-    public int getStatus() {
-        return status;
+    public long getCreationDate() {
+        return creationDate;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setCreationDate(long creationDate) {
+        this.creationDate = creationDate;
     }
 
     @Override
     public String toString() {
-        return "Note{" +
-                "uniqueId='" + uniqueId + '\'' +
-                ", creationDate=" + creationDate +
+        return "CloudNote{" +
+                "ownerUniqueId='" + ownerUniqueId + '\'' +
+                ", uniqueId='" + uniqueId + '\'' +
                 ", message='" + message + '\'' +
-                ", status=" + status +
+                ", creationDate=" + creationDate +
                 '}';
     }
 }

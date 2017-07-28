@@ -21,7 +21,6 @@ public class CloudMock {
 
     public static final String REPOSITORY_KEY = "CloudMockKey";
     private static final String CLOUD_USERS_KEY = "CloudUsersKey";
-    private static final String NOTES_KEY = "NotesKey";
 
     private SharedPreferences cloudPreferences;
     private Gson gson;
@@ -88,31 +87,41 @@ public class CloudMock {
                 .delay(CloudMockDelayGenerator.generateDelay(), TimeUnit.MILLISECONDS);
     }
 
-    public Observable<CloudMockResponse> fetchNotes() {
+    public Observable<CloudMockResponse> fetchNotes(final String userUniqueId) {
         return Observable.fromCallable(new Callable<CloudMockResponse>() {
             @Override
             public CloudMockResponse call() throws Exception {
-                String jsonString = cloudPreferences.getString(NOTES_KEY, "");
+                if (!cloudPreferences.contains(userUniqueId)) {
+                    return new CloudMockResponse(
+                            CloudMockResponseCodes.RESPONSE_CODE_401,
+                            null);
+                }
+
+                String jsonString = cloudPreferences.getString(userUniqueId, "");
                 return new CloudMockResponse(CloudMockResponseCodes.RESPONSE_CODE_200, jsonString);
             }
         }).delay(CloudMockDelayGenerator.generateDelay(), TimeUnit.MILLISECONDS);
     }
 
-    public Observable<CloudMockResponse> addNote(final String message, final long creationDate,
-                                                 final int status) {
+    public Observable<CloudMockResponse> addNote(final String userUniqueId, final String message,
+                                                 final long creationDate) {
         return Observable.fromCallable(new Callable<CloudMockResponse>() {
             @Override
             public CloudMockResponse call() throws Exception {
-                List<CloudNote> notes = getNotes();
+                if (!cloudPreferences.contains(userUniqueId)) {
+                    List<CloudNote> notesList = new ArrayList<>();
+                    updateNoteCloudList(userUniqueId, notesList);
+                }
+
+                List<CloudNote> notes = getNotes(userUniqueId);
 
                 CloudNote note = new CloudNote();
                 note.setUniqueId(UUID.randomUUID().toString());
                 note.setMessage(message);
                 note.setCreationDate(creationDate);
-                note.setStatus(status);
 
                 notes.add(note);
-                updateNoteCloudList(notes);
+                updateNoteCloudList(userUniqueId, notes);
 
                 return new CloudMockResponse(
                         CloudMockResponseCodes.RESPONSE_CODE_200, gson.toJson(note));
@@ -120,11 +129,17 @@ public class CloudMock {
         }).delay(CloudMockDelayGenerator.generateDelay(), TimeUnit.MILLISECONDS);
     }
 
-    public Observable<CloudMockResponse> removeNote(final String uniqueId) {
+    public Observable<CloudMockResponse> removeNote(final String userUniqueId, final String uniqueId) {
         return Observable.fromCallable(new Callable<CloudMockResponse>() {
             @Override
             public CloudMockResponse call() throws Exception {
-                List<CloudNote> notes = getNotes();
+                if (!cloudPreferences.contains(userUniqueId)) {
+                    return new CloudMockResponse(
+                            CloudMockResponseCodes.RESPONSE_CODE_401,
+                            null);
+                }
+
+                List<CloudNote> notes = getNotes(userUniqueId);
 
                 boolean noteFound = false;
                 List<CloudNote> notesModified = new ArrayList<>();
@@ -137,7 +152,7 @@ public class CloudMock {
                 }
 
                 if (noteFound) {
-                    updateNoteCloudList(notesModified);
+                    updateNoteCloudList(userUniqueId, notesModified);
                     return new CloudMockResponse(
                             CloudMockResponseCodes.RESPONSE_CODE_200, null);
                 } else {
@@ -148,12 +163,18 @@ public class CloudMock {
         }).delay(CloudMockDelayGenerator.generateDelay(), TimeUnit.MILLISECONDS);
     }
 
-    public Observable<CloudMockResponse> updateNote(final String uniqueId, final String message,
-                                                    final long creationDate, final int status) {
+    public Observable<CloudMockResponse> updateNote( final String userUniqueId, final String uniqueId,
+                                                    final String message, final long creationDate) {
         return Observable.fromCallable(new Callable<CloudMockResponse>() {
             @Override
             public CloudMockResponse call() throws Exception {
-                List<CloudNote> notes = getNotes();
+                if (!cloudPreferences.contains(userUniqueId)) {
+                    return new CloudMockResponse(
+                            CloudMockResponseCodes.RESPONSE_CODE_401,
+                            null);
+                }
+
+                List<CloudNote> notes = getNotes(userUniqueId);
 
                 boolean noteFound = false;
                 CloudNote modifiedNote = new CloudNote();
@@ -162,14 +183,13 @@ public class CloudMock {
                         noteFound = true;
                         note.setMessage(message);
                         note.setCreationDate(creationDate);
-                        note.setStatus(status);
                         modifiedNote = note;
                         break;
                     }
                 }
 
                 if (noteFound) {
-                    updateNoteCloudList(notes);
+                    updateNoteCloudList(userUniqueId, notes);
                     return new CloudMockResponse(
                             CloudMockResponseCodes.RESPONSE_CODE_200, gson.toJson(modifiedNote));
                 } else {
@@ -180,14 +200,14 @@ public class CloudMock {
         }).delay(CloudMockDelayGenerator.generateDelay(), TimeUnit.MILLISECONDS);
     }
 
-    private void updateNoteCloudList(List<CloudNote> notesList) {
+    private void updateNoteCloudList(String userUniqueId, List<CloudNote> notesList) {
         String jsonString = gson.toJson(notesList);
         SharedPreferences.Editor editor = cloudPreferences.edit();
-        editor.putString(NOTES_KEY, jsonString).apply();
+        editor.putString(userUniqueId, jsonString).apply();
     }
 
-    private List<CloudNote> getNotes() {
-        String jsonString = cloudPreferences.getString(NOTES_KEY, "");
+    private List<CloudNote> getNotes(final String userUniqueId) {
+        String jsonString = cloudPreferences.getString(userUniqueId, "");
         List<CloudNote> list = new ArrayList<>();
         if (!jsonString.isEmpty()) {
             list = gson.fromJson(jsonString, new TypeToken<List<CloudNote>>() {

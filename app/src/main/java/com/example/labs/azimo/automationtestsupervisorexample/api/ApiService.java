@@ -81,8 +81,8 @@ public class ApiService {
         });
     }
 
-    public Observable<FetchNotesResponse> fetchNotes() {
-        return cloudMock.fetchNotes().flatMap(new Func1<CloudMockResponse, Observable<FetchNotesResponse>>() {
+    public Observable<FetchNotesResponse> fetchNotes(String userId) {
+        return cloudMock.fetchNotes(userId).flatMap(new Func1<CloudMockResponse, Observable<FetchNotesResponse>>() {
             @Override
             public Observable<FetchNotesResponse> call(CloudMockResponse response) {
                 if (response.success()) {
@@ -103,7 +103,6 @@ public class ApiService {
                             incomingNote.setUniqueId(note.getUniqueId());
                             incomingNote.setMessage(note.getMessage());
                             incomingNote.setCreationDate(note.getCreationDate());
-                            incomingNote.setStatus(note.getStatus());
                             notes.add(incomingNote);
                         }
                         fetchNotesResponse.setNoteList(notes);
@@ -116,8 +115,9 @@ public class ApiService {
         });
     }
 
-    public Observable<AddNoteResponse> addNote(final String message, final long creationDate, final int status) {
-        return cloudMock.addNote(message, creationDate, status).flatMap(new Func1<CloudMockResponse, Observable<AddNoteResponse>>() {
+    public Observable<AddNoteResponse> addNote(final String userId, final String message,
+                                               final long creationDate) {
+        return cloudMock.addNote(userId, message, creationDate).flatMap(new Func1<CloudMockResponse, Observable<AddNoteResponse>>() {
             @Override
             public Observable<AddNoteResponse> call(CloudMockResponse response) {
                 if (response.success()) {
@@ -132,7 +132,6 @@ public class ApiService {
                         incomingNote.setUniqueId(note.getUniqueId());
                         incomingNote.setMessage(note.getMessage());
                         incomingNote.setCreationDate(note.getCreationDate());
-                        incomingNote.setStatus(note.getStatus());
                         addNoteResponse.setNote(incomingNote);
                     }
                     return Observable.just(addNoteResponse);
@@ -143,8 +142,8 @@ public class ApiService {
         });
     }
 
-    public Observable<RemoveNoteResponse> removeNote(final String uniqueId) {
-        return cloudMock.removeNote(uniqueId).flatMap(new Func1<CloudMockResponse, Observable<RemoveNoteResponse>>() {
+    public Observable<RemoveNoteResponse> removeNote(final String userId, final String noteId) {
+        return cloudMock.removeNote(userId, noteId).flatMap(new Func1<CloudMockResponse, Observable<RemoveNoteResponse>>() {
             @Override
             public Observable<RemoveNoteResponse> call(CloudMockResponse response) {
                 if (response.success()) {
@@ -160,9 +159,9 @@ public class ApiService {
         });
     }
 
-    public Observable<UpdateNoteResponse> updateNote(final String uniqueId, final String message,
-                                                     final long creationDate, final int status) {
-        return cloudMock.updateNote(uniqueId, message, creationDate, status).flatMap(new Func1<CloudMockResponse, Observable<UpdateNoteResponse>>() {
+    public Observable<UpdateNoteResponse> updateNote(final String userId, final String noteId,
+                                                     final String message, final long creationDate) {
+        return cloudMock.updateNote(userId, noteId, message, creationDate).flatMap(new Func1<CloudMockResponse, Observable<UpdateNoteResponse>>() {
             @Override
             public Observable<UpdateNoteResponse> call(CloudMockResponse response) {
                 if (response.success()) {
@@ -177,7 +176,6 @@ public class ApiService {
                         incomingNote.setUniqueId(note.getUniqueId());
                         incomingNote.setMessage(note.getMessage());
                         incomingNote.setCreationDate(note.getCreationDate());
-                        incomingNote.setStatus(note.getStatus());
                         updateNoteResponse.setNote(incomingNote);
                     }
                     return Observable.just(updateNoteResponse);

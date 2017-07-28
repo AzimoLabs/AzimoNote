@@ -2,8 +2,10 @@ package com.example.labs.azimo.automationtestsupervisorexample.ui.presenter;
 
 import com.example.labs.azimo.automationtestsupervisorexample.api.manager.ApiErrorManager;
 import com.example.labs.azimo.automationtestsupervisorexample.api.manager.NotesManager;
+import com.example.labs.azimo.automationtestsupervisorexample.api.manager.UserManager;
 import com.example.labs.azimo.automationtestsupervisorexample.api.utils.ErrorTrackingApiObserver;
 import com.example.labs.azimo.automationtestsupervisorexample.data.model.Note;
+import com.example.labs.azimo.automationtestsupervisorexample.data.model.User;
 import com.example.labs.azimo.automationtestsupervisorexample.ui.activity.AddNoteActivity;
 import com.example.labs.azimo.automationtestsupervisorexample.utils.Navigator;
 
@@ -23,16 +25,19 @@ public class AddNoteActivityPresenter {
 
     private Navigator navigator;
     private ApiErrorManager apiErrorManager;
+    private UserManager userManager;
     private NotesManager notesManager;
 
     private Subscription addNoteSubscription;
 
     @Inject
     public AddNoteActivityPresenter(AddNoteActivity view, Navigator navigator,
-                                    ApiErrorManager apiErrorManager, NotesManager notesManager) {
+                                    ApiErrorManager apiErrorManager, UserManager userManager,
+                                    NotesManager notesManager) {
         this.view = view;
         this.navigator = navigator;
         this.apiErrorManager = apiErrorManager;
+        this.userManager = userManager;
         this.notesManager = notesManager;
     }
 
@@ -40,8 +45,9 @@ public class AddNoteActivityPresenter {
         if (addNoteSubscription == null || addNoteSubscription.isUnsubscribed()) {
             view.showLoadingDialog();
 
+            User user = userManager.getCurrentUser();
             Note newNote = createNote(message);
-            addNoteSubscription = notesManager.addNote(newNote)
+            addNoteSubscription = notesManager.addNote(user, newNote)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new ErrorTrackingApiObserver<Note>(apiErrorManager) {

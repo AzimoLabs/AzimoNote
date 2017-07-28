@@ -9,7 +9,6 @@ public class Note {
     private String uniqueId;
     private long creationDate;
     private String message;
-    private int status;
 
     public String getUniqueId() {
         return uniqueId;
@@ -34,22 +33,13 @@ public class Note {
     public void setMessage(String message) {
         this.message = message;
     }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
+    
     @Override
     public String toString() {
         return "Note{" +
                 "uniqueId='" + uniqueId + '\'' +
                 ", creationDate=" + creationDate +
                 ", message='" + message + '\'' +
-                ", status=" + status +
                 '}';
     }
 }
