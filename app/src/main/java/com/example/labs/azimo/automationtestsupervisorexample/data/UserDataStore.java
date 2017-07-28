@@ -45,7 +45,7 @@ public class UserDataStore {
         editor.apply();
     }
 
-    public void removeUser() {
+    public void logoutCurrentUser() {
         SharedPreferences.Editor editor = preferences.edit();
         editor.remove(USER_UNIQUE_KEY);
         editor.remove(USER_EMAIL_KEY);

@@ -4,15 +4,17 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.example.labs.azimo.automationtestsupervisorexample.R;
 import com.example.labs.azimo.automationtestsupervisorexample.data.model.Note;
 import com.example.labs.azimo.automationtestsupervisorexample.ui.activity.base.BaseActivity;
 import com.example.labs.azimo.automationtestsupervisorexample.ui.adapter.NotesAdapter;
+import com.example.labs.azimo.automationtestsupervisorexample.ui.dialog.DecisionDialog;
 import com.example.labs.azimo.automationtestsupervisorexample.ui.presenter.NotesActivityPresenter;
 
 import java.util.List;
@@ -54,6 +56,23 @@ public class NotesActivity extends BaseActivity {
         setupToolbar();
         setupNotesList();
         setupViews();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_notes, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_logout:
+                presenter.onMenuLogoutButtonClick();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
@@ -119,5 +138,18 @@ public class NotesActivity extends BaseActivity {
                 srlLoading.setRefreshing(false);
             }
         });
+    }
+
+    public void showLogoutPromptDialog() {
+        DecisionDialog decisionDialog = DecisionDialog.newInstance(
+                R.string.notes_dialog_logout_prompt,
+                R.string.decision_dialog_yes,
+                R.string.decision_dialog_no
+        );
+        decisionDialog.show(getFragmentManager(), DecisionDialog.TAG);
+    }
+
+    public void onLogoutConfirmed() {
+        presenter.onLogoutConfirmed();
     }
 }

@@ -3,6 +3,8 @@
 
     <string name="message_dialog_confirm">Confirm</string>
     <string name="progress_dialog_message">Please wait…</string>
+    <string name="decision_dialog_yes">Yes</string>
+    <string name="decision_dialog_no">No</string>
 
     <string name="welcome_screen_title">Welcome</string>
     <string name="welcome_header">Welcome to Azimo Note!</string>
@@ -27,9 +29,11 @@
 
     <string name="notes_screen_title">Notes</string>
     <string name="notes_adapter_item_placeholder">---</string>
+    <string name="notes_menu_button_logout">Logout</string>
+    <string name="notes_dialog_logout_prompt">Are you sure?</string>
 
     <string name="add_note_screen_title">Add note</string>
     <string name="add_note_button">Save</string>
-    <string name="add_note_hint">Type message...</string>
+    <string name="add_note_hint">Type message…</string>
 
 </resources>

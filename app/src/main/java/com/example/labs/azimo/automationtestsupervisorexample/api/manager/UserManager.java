@@ -27,6 +27,10 @@ public class UserManager {
         return userDataStore.isUserLoggedIn();
     }
 
+    public void logoutCurrentUser() {
+        userDataStore.logoutCurrentUser();
+    }
+
     public Observable<User> loginUser(String email, String password) {
         return apiService.loginUser(email, password).flatMap(new Func1<LoginUserResponse, Observable<User>>() {
             @Override

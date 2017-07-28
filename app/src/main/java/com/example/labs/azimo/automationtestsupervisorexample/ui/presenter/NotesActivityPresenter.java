@@ -2,6 +2,7 @@ package com.example.labs.azimo.automationtestsupervisorexample.ui.presenter;
 
 import com.example.labs.azimo.automationtestsupervisorexample.api.manager.ApiErrorManager;
 import com.example.labs.azimo.automationtestsupervisorexample.api.manager.NotesManager;
+import com.example.labs.azimo.automationtestsupervisorexample.api.manager.UserManager;
 import com.example.labs.azimo.automationtestsupervisorexample.api.utils.ErrorTrackingApiObserver;
 import com.example.labs.azimo.automationtestsupervisorexample.data.model.Note;
 import com.example.labs.azimo.automationtestsupervisorexample.ui.activity.NotesActivity;
@@ -24,6 +25,7 @@ public class NotesActivityPresenter {
     private NotesActivity view;
 
     private Navigator navigator;
+    private UserManager userManager;
     private NotesManager notesManager;
     private ApiErrorManager apiErrorManager;
 
@@ -31,9 +33,11 @@ public class NotesActivityPresenter {
 
     @Inject
     public NotesActivityPresenter(NotesActivity view, Navigator navigator,
-                                  NotesManager notesManager, ApiErrorManager apiErrorManager) {
+                                  UserManager userManager, NotesManager notesManager,
+                                  ApiErrorManager apiErrorManager) {
         this.view = view;
         this.navigator = navigator;
+        this.userManager = userManager;
         this.notesManager = notesManager;
         this.apiErrorManager = apiErrorManager;
     }
@@ -42,12 +46,20 @@ public class NotesActivityPresenter {
         navigator.navigateToAddNoteScreenFrom(view);
     }
 
+    public void onMenuLogoutButtonClick() {
+        view.showLogoutPromptDialog();
+    }
+
+    public void onLogoutConfirmed() {
+        userManager.logoutCurrentUser();
+        navigator.navigateToWelcomeScreenFrom(view);
+    }
+
     public void refreshNoteList() {
         if (!view.isLoaderVisible()) {
             view.showLoader();
         }
         if (fetchNotesSubscription == null || fetchNotesSubscription.isUnsubscribed()) {
-
             fetchNotesSubscription = notesManager.fetchNotes()
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())

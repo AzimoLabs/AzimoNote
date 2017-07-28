@@ -68,11 +68,16 @@ public class CloudMock {
                         List<CloudUser> users = getUsers();
 
                         for (CloudUser registeredUser : users) {
-                            if (registeredUser.getEmail().equals(email)
-                                    && registeredUser.getPassword().equals(password)) {
-                                return new CloudMockResponse(
-                                        CloudMockResponseCodes.RESPONSE_CODE_200,
-                                        gson.toJson(registeredUser));
+                            if (registeredUser.getEmail().equals(email)) {
+                                if (registeredUser.getPassword().equals(password)) {
+                                    return new CloudMockResponse(
+                                            CloudMockResponseCodes.RESPONSE_CODE_200,
+                                            gson.toJson(registeredUser));
+                                } else {
+                                    return new CloudMockResponse(
+                                            CloudMockResponseCodes.RESPONSE_CODE_404,
+                                            null);
+                                }
                             }
                         }
 
