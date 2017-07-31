@@ -1,0 +1,82 @@
+{
+  "avd_schema_list": [
+    {
+      "avd_name": "TestDevice-Android23-GoogleApis",
+      "create_avd_package": "system-images;android-23;google_apis;x86_64",
+      "create_device": "",
+      "create_avd_tag": "",
+      "create_avd_abi": "google_apis/x86_64",
+      "create_avd_additional_options": "--force",
+      "create_avd_hardware_config_filepath": "",
+      "launch_avd_snapshot_filepath": "",
+      "launch_avd_launch_binary_name": "emulator",
+      "launch_avd_additional_options": "-gpu on -no-boot-anim"
+    }
+  ],
+  "avd_set_list": [
+    {
+      "set_name": "default",
+      "avd_list": [
+        {
+          "avd_name": "",
+          "instances": -1
+        }
+      ],
+      "avd_port_rules": {
+        "assign_missing_ports": true,
+        "search_range_min": 5556,
+        "search_range_max": 5580,
+        "ports_to_ignore": [],
+        "ports_to_use": []
+      }
+    },
+    {
+      "set_name": "3AVD-23",
+      "avd_list": [
+        {
+          "avd_name": "TestDevice-Android23-GoogleApis",
+          "instances": 3
+        }
+      ],
+      "avd_port_rules": {
+        "assign_missing_ports": true,
+        "search_range_min": 5556,
+        "search_range_max": 5580,
+        "ports_to_ignore": [],
+        "ports_to_use": []
+      }
+    },
+     {
+      "set_name": "2AVD-23",
+      "avd_list": [
+        {
+          "avd_name": "TestDevice-Android23-GoogleApis",
+          "instances": 2
+        }
+      ],
+      "avd_port_rules": {
+        "assign_missing_ports": true,
+        "search_range_min": 5556,
+        "search_range_max": 5580,
+        "ports_to_ignore": [],
+        "ports_to_use": []
+      }
+    },
+     {
+      "set_name": "1AVD-23",
+      "avd_list": [
+        {
+          "avd_name": "TestDevice-Android23-GoogleApis",
+          "instances": 1
+        }
+      ],
+      "avd_port_rules": {
+        "assign_missing_ports": true,
+        "search_range_min": 5556,
+        "search_range_max": 5580,
+        "ports_to_ignore": [],
+        "ports_to_use": []
+      }
+    }
+  ]
+}

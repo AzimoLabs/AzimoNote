@@ -1,0 +1,89 @@
+{
+  "test_list": [
+    {
+      "test_package_name": "EndToEnd-Dispatcher",
+      "test_packages": [
+        "com.example.labs.azimo.note.tests.endtoend.dispatcher"
+      ],
+      "test_classes": [],
+      "test_cases": []
+    },
+    {
+      "test_package_name": "EndToEnd-Login",
+      "test_packages": [
+        "com.example.labs.azimo.note.tests.endtoend.login"
+      ],
+      "test_classes": [],
+      "test_cases": []
+    },
+    {
+      "test_package_name": "EndToEnd-Notes",
+      "test_packages": [
+        "com.example.labs.azimo.note.tests.endtoend.notes"
+      ],
+      "test_classes": [],
+      "test_cases": []
+    },
+    {
+      "test_package_name": "EndToEnd-Register",
+      "test_packages": [
+        "com.example.labs.azimo.note.tests.endtoend.register"
+      ],
+      "test_classes": [],
+      "test_cases": []
+    },
+    {
+      "test_package_name": "Function-Login",
+      "test_packages": [
+        "com.example.labs.azimo.note.tests.function.login"
+      ],
+      "test_classes": [],
+      "test_cases": []
+    },
+    {
+      "test_package_name": "Function-Register",
+      "test_packages": [
+        "com.example.labs.azimo.note.tests.function.register"
+      ],
+      "test_classes": [],
+      "test_cases": []
+    },
+    {
+      "test_package_name": "Function-Welcome",
+      "test_packages": [
+        "com.example.labs.azimo.note.tests.function.welcome"
+      ],
+      "test_classes": [],
+      "test_cases": []
+    }
+  ],
+  "test_set_list": [
+    {
+      "set_name": "function_tests",
+      "apk_name_part": "app-debug",
+      "application_apk_assemble_task": "assembleDebug",
+      "test_apk_assemble_task": "assembleDebugAndroidTest",
+      "gradle_build_params": "",
+      "shard": true,
+      "set_package_names": [
+        "Function-Login",
+        "Function-Register",
+        "Function-Welcome"
+      ]
+    },
+    {
+      "set_name": "endtoend_tests",
+      "apk_name_part": "app-debug",
+      "application_apk_assemble_task": "assembleDebug",
+      "test_apk_assemble_task": "assembleDebugAndroidTest",
+      "gradle_build_params": "",
+      "shard": true,
+      "set_package_names": [
+        "EndToEnd-Dispatcher",
+        "EndToEnd-Login",
+        "EndToEnd-Notes",
+        "EndToEnd-Register"
+      ]
+    }
+  ]
+}
