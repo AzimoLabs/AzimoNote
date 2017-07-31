@@ -1,8 +1,12 @@
 package com.example.labs.azimo.automationtestsupervisorexample;
 
+import com.example.labs.azimo.automationtestsupervisorexample.api.manager.UserManager;
+import com.example.labs.azimo.automationtestsupervisorexample.api.mock.CloudMock;
 import com.example.labs.azimo.automationtestsupervisorexample.api.module.ApiModule;
+import com.example.labs.azimo.automationtestsupervisorexample.data.UserDataStore;
 import com.example.labs.azimo.automationtestsupervisorexample.data.module.DataModule;
 import com.example.labs.azimo.automationtestsupervisorexample.utils.module.UtilsModule;
+import com.google.gson.Gson;
 
 import javax.inject.Singleton;
 
@@ -43,4 +47,9 @@ public interface AzimoNoteComponent {
 
         AzimoNoteComponent build();
     }
+
+    public CloudMock getCloudMock();
+    public Gson getGson();
+    public UserManager getUserManager();
+    public UserDataStore getUserDataStore();
 }

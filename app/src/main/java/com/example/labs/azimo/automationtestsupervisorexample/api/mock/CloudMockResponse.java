@@ -1,10 +1,12 @@
 package com.example.labs.azimo.automationtestsupervisorexample.api.mock;
 
+import com.example.labs.azimo.automationtestsupervisorexample.api.response.LoginUserResponse;
+
 /**
  * Created by F1sherKK on 24/07/2017.
  */
 
-public class CloudMockResponse {
+public class CloudMockResponse extends LoginUserResponse {
     public int code;
     public String body;
     public String message;

@@ -26,6 +26,9 @@
     <string name="register_btn_login">Already have an account? Login</string>
     <string name="register_hint_password">Password</string>
     <string name="register_hint_email">Email</string>
+    <string name="register_error_incorrect_email">Invalid e-mail</string>
+    <string name="register_error_empty_email">E-mail field cannot be empty</string>
+    <string name="register_error_empty_password">Password field cannot be empty</string>
 
     <string name="notes_screen_title">Notes</string>
     <string name="notes_adapter_item_placeholder">---</string>

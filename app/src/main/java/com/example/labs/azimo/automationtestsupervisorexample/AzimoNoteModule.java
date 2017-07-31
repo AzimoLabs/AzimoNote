@@ -24,10 +24,9 @@ import dagger.Provides;
         NotesActivitySubComponent.class,
         AddNoteActivitySubComponent.class
 })
-
 public class AzimoNoteModule {
     @Provides
-    Context provideContext(AzimoNoteApplication application) {
+    public Context provideContext(AzimoNoteApplication application) {
         return application.getApplicationContext();
     }
 }

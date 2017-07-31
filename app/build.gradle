@@ -15,17 +15,23 @@ android {
     buildToolsVersion "25.0.3"
     defaultConfig {
         applicationId "com.example.labs.azimo.automationtestsupervisorexample"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        testInstrumentationRunner "com.example.labs.azimo.automationtestsupervisorexample.config.AzimoTestRunner"
+        testBuildType 'debug'
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
     }
 }
 
@@ -66,5 +72,19 @@ dependencies {
     androidTestCompile "com.github.fabioCollini:DaggerMock:0.7.0"
     androidTestCompile "com.squareup:javawriter:2.5.1"
 
-    androidTestCompile "com.android.support.test.espresso:espresso-contrib:3.0.0"
+    // AndroidJUnitRunner and JUnit Rules
+    androidTestCompile 'com.android.support.test:runner:1.0.0'
+    androidTestCompile 'com.android.support.test:rules:1.0.0'
+
+    // Espresso dependencies
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:3.0.0'
+    androidTestCompile 'com.android.support.test.espresso:espresso-contrib:3.0.0'
+    androidTestCompile 'com.android.support.test.espresso:espresso-intents:3.0.0'
+    androidTestCompile 'com.android.support.test.espresso:espresso-accessibility:3.0.0'
+    androidTestCompile 'com.android.support.test.espresso:espresso-web:3.0.0'
+    androidTestCompile 'com.android.support.test.espresso.idling:idling-concurrent:3.0.0'
+    androidTestCompile 'com.android.support.test.espresso:espresso-idling-resource:3.0.0'
+
+    // Azimo tools
+    androidTestCompile 'com.azimolabs.conditionwatcher:conditionwatcher:0.1'
 }

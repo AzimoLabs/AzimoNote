@@ -85,17 +85,17 @@ public class RegisterActivityPresenter {
     private boolean inputHasErrors(String email, String password) {
         boolean wasError = false;
         if (!emailValidator.isEmailCorrect(email)) {
-            view.setEmailError(view.getString(R.string.login_error_incorrect_email));
+            view.setEmailError(view.getString(R.string.register_error_incorrect_email));
             wasError = true;
         }
 
         if (email.isEmpty()) {
-            view.setEmailError(view.getString(R.string.login_error_empty_email));
+            view.setEmailError(view.getString(R.string.register_error_empty_email));
             wasError = true;
         }
 
         if (password.isEmpty()) {
-            view.setPasswordError(view.getString(R.string.login_error_empty_password));
+            view.setPasswordError(view.getString(R.string.register_error_empty_password));
             wasError = true;
         }
 
