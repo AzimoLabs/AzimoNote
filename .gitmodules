@@ -1,0 +1,3 @@
+[submodule "automation/automationTestSupervisor"]
+	path = automation/automationTestSupervisor
+	url = https://github.com/AzimoLabs/AutomationTestSupervisor
