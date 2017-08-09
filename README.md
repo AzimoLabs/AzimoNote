@@ -1,10 +1,10 @@
-## AzimoNote
+# AzimoNote
 
 Example Android Project created for sake of presenting one of many possible ways how to integrate [AutomationTestSupervisor](https://github.com/AzimoLabs/AutomationTestSupervisor) tool with Android Application. AutomationTestSupervisor is our open source Python tool for managing and organizing Android automation test session.
 
 -------------
 
-#### TL;DR quick launch
+### TL;DR quick launch
 
 1. Enter directory where you want to fetch project.
 
@@ -46,9 +46,9 @@ Example Android Project created for sake of presenting one of many possible ways
 
 -------------
 
-### About application structure
+## About application structure
 
-#### General
+### General
 
 1. It is **100% offline**. Connection with Cloud was mocked via `CloudMock.java` class which distributes responses to app.
 2. It is using **RxJava** for simulate internet connection delay and handling asynchronous operation.
@@ -62,7 +62,7 @@ Example Android Project created for sake of presenting one of many possible ways
     - **NotesActivity** - screen that displays all user notes in chronological order
     - **AddNoteActivity** - screen that allows to type a note message and send it to Application
 
-#### UI tests
+### UI tests
 
 Currently following functions of AzimoNote are UI tested:
 
@@ -78,7 +78,7 @@ b) Function tests (10 tests):
 - user registration formula, navigation, error handling
 - welcome screen navigation
 
-#### AutomationTestSupervisor - integration between two projects
+### AutomationTestSupervisor - integration between two projects
 AutomationTestSupervisor is added as submodule of AzimoNote project. It is done via `.submodules` file located in the root of AzimoNote project:
 
 Content of `.submodules` file:
@@ -89,11 +89,11 @@ Content of `.submodules` file:
 
 When downloading AzimoNote repository, after synchronisation of submodules it's files should be visible in `<project_root>/automation/automationTestSupervisor` directory.
 
-#### AutomationTestSupervisor - configuration
+### AutomationTestSupervisor - configuration
 Nothing was changed inside AutomationTestSupervisor project. It expects four configuration files, which are adjusted to tested project, in relative directory to `automationTestSupervisor` folder - `../AutomationTestSupervisorConfig/`. It requires following files:
 
 
-###### [testManifest.json](https://github.com/AzimoLabs/AzimoNote/blob/master/automation/automationTestSupervisorConfig/testManifest.json)
+##### [testManifest.json](https://github.com/AzimoLabs/AzimoNote/blob/master/automation/automationTestSupervisorConfig/testManifest.json)
 
 All test packages from AzimoNote project are listed in this .json file. Those packages are used to create test set configs. Test set name can be added as a parameter to AutomationTestSupervisor launching command.
 
@@ -101,7 +101,7 @@ Available test sets for AzimoNote project:
 - function_tests
 - endtoend_tests
 
-###### [avdManifest.json](https://github.com/AzimoLabs/AzimoNote/blob/master/automation/automationTestSupervisorConfig/avdManifest.json)
+##### [avdManifest.json](https://github.com/AzimoLabs/AzimoNote/blob/master/automation/automationTestSupervisorConfig/avdManifest.json)
 
 Stores schemas for AVD devices that can be created, launched and supervised by AutomationTestSupervisor. Schemas are used for creating AVD set configs. AVD set name can be added as a parameter to AutomationTestSupervisor launching command.
 
@@ -110,7 +110,7 @@ Available AVD sets:
 - 2AVD-23
 - 1AVD-23
 
-###### [pathManifest.json](https://github.com/AzimoLabs/AzimoNote/blob/master/automation/automationTestSupervisorConfig/pathManifest.json)
+##### [pathManifest.json](https://github.com/AzimoLabs/AzimoNote/blob/master/automation/automationTestSupervisorConfig/pathManifest.json)
 
 Stores paths configured for setup where AutomationTestSupervisor is pulled into AzimoNote project.
 - SDK dir read from env variable `ANDROID_HOME`
@@ -118,7 +118,7 @@ Stores paths configured for setup where AutomationTestSupervisor is pulled into 
 - path to tested project root directory set to `../../`
 - path to .apk files in tested project set to `../../app/build/outputs/apk/`
 
-###### [launchManifest.json](https://github.com/AzimoLabs/AzimoNote/blob/master/automation/automationTestSupervisorConfig/launchManifest.json)
+##### [launchManifest.json](https://github.com/AzimoLabs/AzimoNote/blob/master/automation/automationTestSupervisorConfig/launchManifest.json)
 
 Stores possible launch plans for AutomationTestSupervisor. Few universal and optional launch configurations were constructed for AzimoNote project:
 - default (used if no launch plan was added to launching command)
@@ -128,7 +128,7 @@ Stores possible launch plans for AutomationTestSupervisor. Few universal and opt
 
 -------------
 
-### TO:DO
+## TO:DO
 
 1. Application
    - add remove note function
