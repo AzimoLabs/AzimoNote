@@ -95,7 +95,7 @@ Nothing was changed inside AutomationTestSupervisor project. It expects four con
 
 ###### [testManifest.json](https://github.com/AzimoLabs/AzimoNote/blob/master/automation/automationTestSupervisorConfig/testManifest.json)
 
-All test packages from AzimoNote project are listed in this .json file. Those packages are used to create test set configs. Test set name can be added as a parameter to AutomationTestSupervisor launching command. 
+All test packages from AzimoNote project are listed in this .json file. Those packages are used to create test set configs. Test set name can be added as a parameter to AutomationTestSupervisor launching command.
 
 Available test sets for AzimoNote project:
 
@@ -104,7 +104,7 @@ Available test sets for AzimoNote project:
 
 ###### [avdManifest.json](https://github.com/AzimoLabs/AzimoNote/blob/master/automation/automationTestSupervisorConfig/avdManifest.json)
 
-Stores schemas for AVD devices that can be created, launched and supervised by AutomationTestSupervisor. Schemas are used for creating AVD set configs. AVD set name can be added as a parameter to AutomationTestSupervisor launching command. 
+Stores schemas for AVD devices that can be created, launched and supervised by AutomationTestSupervisor. Schemas are used for creating AVD set configs. AVD set name can be added as a parameter to AutomationTestSupervisor launching command.
 
 Available AVD sets:
 - 3AVD-23
@@ -129,4 +129,14 @@ Stores possible launch plans for AutomationTestSupervisor. Few universal and opt
 - no_apk_build
 - no_apk_build_record_videos
 
+-------------
 
+### TO:DO
+
+1. Application
+  - add remove note function
+  - add edit note function
+
+2. Tests
+  - change Dagger 2 project structure to make it compatible with DaggerMock
+  - add function tests for operations with notes which requires mock of REST client
