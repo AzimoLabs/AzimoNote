@@ -26,7 +26,7 @@ Example Android Project created for sake of presenting one of many possible ways
 
 7. Navigate to AutomationTestSupervisor folder.
 
-  ```cd <directory>/AzimoNote/automation/automationTestSupervisor```
+    ```cd <directory>/AzimoNote/automation/automationTestSupervisor```
 
 8. Launch tests with one of following commands according to your needs and interest. Example of command assembles (of course there are more combinations and options + you can create your own):
 
