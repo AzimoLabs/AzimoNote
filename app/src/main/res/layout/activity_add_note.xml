@@ -26,7 +26,7 @@
         <EditText
             android:id="@+id/etMessage"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="240dp"
             android:background="@drawable/et_background"
             android:gravity="top"
             android:hint="@string/add_note_hint"

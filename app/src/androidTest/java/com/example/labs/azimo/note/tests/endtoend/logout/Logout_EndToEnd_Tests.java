@@ -1,4 +1,4 @@
-package com.example.labs.azimo.note.tests.endtoend.notes;
+package com.example.labs.azimo.note.tests.endtoend.logout;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -47,7 +47,7 @@ import static org.hamcrest.core.Is.is;
  * Created by F1sherKK on 31/07/2017.
  */
 
-public class Notes_EndToEnd_Tests {
+public class Logout_EndToEnd_Tests {
 
     @Rule
     public ActivityTestRule<WelcomeActivity> activityRule =
@@ -77,41 +77,32 @@ public class Notes_EndToEnd_Tests {
     }
 
     @Test
-    public void testNotes_withFabButtonOnNotesBoard_userShouldBeAbleToAddNewNote() throws Exception {
-        final CloudMock cloudMock = AzimoTestApplication.getInstance().getComponent().getCloudMock();
-        final TestApiService testApiService = new TestApiService(cloudMock);
+    public void testLogout_whenClickedOnLogoutButton_shouldRemoveUserAndLeaveToWelcomeScreen() throws Exception {
         final User user = TestUsers.generateNewUniqueUser();
 
-        final String textToEnter = "test_message";
-
-        CloudMockResponse response = testApiService.registerUser(user.getEmail(), user.getPassword());
-        assertThat(response.code == CloudMockResponseCodes.RESPONSE_CODE_200
-                || response.code == CloudMockResponseCodes.RESPONSE_CODE_402, is(true));
-
         /** {@link WelcomeActivity} */
-        onView(withId(R.id.btnLogin)).perform(click());
+        onView(withId(R.id.btnRegister)).perform(click());
 
-        /** {@link LoginActivity} */
-        waitForEnteredActivity(LoginActivity.class);
+        /** {@link RegisterActivity} */
+        waitForEnteredActivity(RegisterActivity.class);
         onView(withId(R.id.etEmail)).perform(clearText(), typeText(user.getEmail()), closeSoftKeyboard());
         onView(withId(R.id.etPassword)).perform(clearText(), typeText(user.getPassword()), closeSoftKeyboard());
-        onView(withId(R.id.btnLogin)).perform(click());
+        onView(withId(R.id.btnRegister)).perform(click());
 
         /** {@link NotesActivity} */
         waitForEnteredActivity(NotesActivity.class);
-        waitForNotesBoardRefreshingStatusIs(View.GONE);
-        onView(withText(textToEnter)).check(doesNotExist());
-        onView(withId(R.id.fabAddNote)).perform(click());
+        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
 
-        /** {@link AddNoteActivity} */
-        waitForEnteredActivity(AddNoteActivity.class);
-        onView(withId(R.id.etMessage)).perform(clearText(), typeText(textToEnter), closeSoftKeyboard());
-        onView(withId(R.id.btnSave)).perform(click());
+        // without this sleep, test will be flaky
+        // you can't get reference to toolbar menu item in easy way
+        // animation of showing toolbar menu takes no longer than 300ms
+        Thread.sleep(1500);
 
-        /** {@link NotesActivity} */
-        waitForEnteredActivity(NotesActivity.class);
-        waitForNotesBoardRefreshingStatusIs(View.GONE);
-        waitForItemWithTextAppearAtPosOfNotesBoard(0, textToEnter);
-        onView(withText(textToEnter)).check(matches(isDisplayed()));
+        onView(withText(R.string.notes_menu_button_logout)).perform(click());
+        onView(withId(android.R.id.button1)).perform(click());
+
+        /** {@link WelcomeActivity} */
+        waitForEnteredActivity(WelcomeActivity.class);
+        assertThat(AzimoTestApplication.getInstance().getCurrentActivity() instanceof WelcomeActivity, is(true));
     }
 }

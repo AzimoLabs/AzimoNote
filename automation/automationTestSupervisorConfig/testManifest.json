@@ -17,6 +17,14 @@
       "test_cases": []
     },
     {
+      "test_package_name": "EndToEnd-Logout",
+      "test_packages": [
+        "com.example.labs.azimo.note.tests.endtoend.logout"
+      ],
+      "test_classes": [],
+      "test_cases": []
+    },
+    {
       "test_package_name": "EndToEnd-Notes",
       "test_packages": [
         "com.example.labs.azimo.note.tests.endtoend.notes"
@@ -82,7 +90,8 @@
         "EndToEnd-Dispatcher",
         "EndToEnd-Login",
         "EndToEnd-Notes",
-        "EndToEnd-Register"
+        "EndToEnd-Register",
+        "EndToEnd-Logout"
       ]
     }
   ]
