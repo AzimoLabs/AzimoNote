@@ -2,6 +2,8 @@
 
 Example Android Project created for sake of presenting one of many possible ways how to integrate [AutomationTestSupervisor](https://github.com/AzimoLabs/AutomationTestSupervisor) tool with Android Application. AutomationTestSupervisor is our open source Python tool for managing and organizing Android automation test session.
 
+-------------
+
 #### TL;DR quick launch
 
 1. Enter directory where you want to fetch project.
@@ -42,6 +44,7 @@ Example Android Project created for sake of presenting one of many possible ways
 
     ```python3 Launcher.py -tset function_tests -aset 1AVD-23 -lplan record_videos```
 
+-------------
 
 ### About application structure
 
