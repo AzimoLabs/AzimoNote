@@ -32,17 +32,17 @@ Example Android Project created for sake of presenting one of many possible ways
 
 8. Launch tests with one of following commands according to your needs and interest. Example of command assembles (of course there are more combinations and options + you can create your own):
 
-  - function tests on currently connected/visible devices:
+      - function tests on currently connected/visible devices:
 
-    ```python3 Launcher.py -tset function_tests```
+        ```python3 Launcher.py -tset function_tests```
 
-  - end-to-end tests on AVD created and launched by AutomationTestSupervisor:
+      - end-to-end tests on AVD created and launched by AutomationTestSupervisor:
 
-    ```python3 Launcher.py -tset endtoend_tests -aset 2AVD-23```
+        ```python3 Launcher.py -tset endtoend_tests -aset 2AVD-23```
 
-  - function tests on AVD created and launched by AutomationTestSupervisor with screen recording:
+      - function tests on AVD created and launched by AutomationTestSupervisor with screen recording:
 
-    ```python3 Launcher.py -tset function_tests -aset 1AVD-23 -lplan record_videos```
+        ```python3 Launcher.py -tset function_tests -aset 1AVD-23 -lplan record_videos```
 
 -------------
 
@@ -55,28 +55,30 @@ Example Android Project created for sake of presenting one of many possible ways
 3. It is using Dependency Injection framework **Dagger 2** as it's simplifying monitoring of tested app state in UI tests.
 4. [ConditionWatcher](https://github.com/AzimoLabs/ConditionWatcher) lib is used for providing synchronisation between UI test thread and tested application.
 5. AzimoNote consists of following screens:
-  - **DispatcherActivity** - launching screen with decides where user should be redirected depending on it's login status
-  - **WelcomeActivity** - screen for welcoming not logged in users, allows to pick between Login and Register
-  - **LoginActivity** - screen that allows user to sign in or switch to register process
-  - **RegisterActivity** - screen that allows user to sign up or switch to login process
-  - **NotesActivity** - screen that displays all user notes in chronological order
-  - **AddNoteActivity** - screen that allows to type a note message and send it to Application
+    - **DispatcherActivity** - launching screen with decides where user should be redirected depending on it's login status
+    - **WelcomeActivity** - screen for welcoming not logged in users, allows to pick between Login and Register
+    - **LoginActivity** - screen that allows user to sign in or switch to register process
+    - **RegisterActivity** - screen that allows user to sign up or switch to login process
+    - **NotesActivity** - screen that displays all user notes in chronological order
+    - **AddNoteActivity** - screen that allows to type a note message and send it to Application
 
 #### UI tests
 
 Currently following functions of AzimoNote are UI tested:
 
 a) End-to-end tests (6 tests):
-  - user redirection
-  - user login
-  - user logout
-  - user registration
-  - adding and displaying notes
+    
+    - user redirection
+    - user login
+    - user logout
+    - user registration
+    - adding and displaying notes
 
 b) Function tests (10 tests):
-  - user login formula, navigation, error handling
-  - user registration formula, navigation, error handling
-  - welcome screen navigation
+   
+    - user login formula, navigation, error handling
+    - user registration formula, navigation, error handling
+    - welcome screen navigation
 
 #### AutomationTestSupervisor - integration between two projects
 AutomationTestSupervisor is added as submodule of AzimoNote project. It is done via `.submodules` file located in the root of AzimoNote project:
@@ -98,7 +100,6 @@ Nothing was changed inside AutomationTestSupervisor project. It expects four con
 All test packages from AzimoNote project are listed in this .json file. Those packages are used to create test set configs. Test set name can be added as a parameter to AutomationTestSupervisor launching command.
 
 Available test sets for AzimoNote project:
-
 - function_tests
 - endtoend_tests
 
@@ -114,7 +115,6 @@ Available AVD sets:
 ###### [pathManifest.json](https://github.com/AzimoLabs/AzimoNote/blob/master/automation/automationTestSupervisorConfig/pathManifest.json)
 
 Stores paths configured for setup where AutomationTestSupervisor is pulled into AzimoNote project.
-
 - SDK dir read from env variable `ANDROID_HOME`
 - AVD created and stored in directory `~/.android/`
 - path to tested project root directory set to `../../`
@@ -123,7 +123,6 @@ Stores paths configured for setup where AutomationTestSupervisor is pulled into 
 ###### [launchManifest.json](https://github.com/AzimoLabs/AzimoNote/blob/master/automation/automationTestSupervisorConfig/launchManifest.json)
 
 Stores possible launch plans for AutomationTestSupervisor. Few universal and optional launch configurations were constructed for AzimoNote project:
-
 - default (used if no launch plan was added to launching command)
 - record_videos
 - no_apk_build
@@ -134,9 +133,9 @@ Stores possible launch plans for AutomationTestSupervisor. Few universal and opt
 ### TO:DO
 
 1. Application
-  - add remove note function
-  - add edit note function
+   - add remove note function
+   - add edit note function
 
 2. Tests
-  - change Dagger 2 project structure to make it compatible with DaggerMock
-  - add function tests for operations with notes which requires mock of REST client
+   - change Dagger 2 project structure to make it compatible with DaggerMock
+   - add function tests for operations with notes which requires mock of REST client
