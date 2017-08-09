@@ -67,18 +67,16 @@ Example Android Project created for sake of presenting one of many possible ways
 Currently following functions of AzimoNote are UI tested:
 
 a) End-to-end tests (6 tests):
-    
-    - user redirection
-    - user login
-    - user logout
-    - user registration
-    - adding and displaying notes
+- user redirection
+- user login
+- user logout
+- user registration
+- adding and displaying notes
 
 b) Function tests (10 tests):
-   
-    - user login formula, navigation, error handling
-    - user registration formula, navigation, error handling
-    - welcome screen navigation
+- user login formula, navigation, error handling
+- user registration formula, navigation, error handling
+- welcome screen navigation
 
 #### AutomationTestSupervisor - integration between two projects
 AutomationTestSupervisor is added as submodule of AzimoNote project. It is done via `.submodules` file located in the root of AzimoNote project:
